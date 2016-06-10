@@ -1,0 +1,49 @@
+{
+  "name": "docketjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && istanbul cover _mocha --report lcovonly -- -R spec test && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "lint": "standard src/**/*.js test/*.js --global",
+    "coverage": "istanbul cover _mocha test"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "before",
+      "after",
+      "context"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cat-log": "^1.0.0",
+    "fs-extra": "^0.30.0",
+    "gray-matter": "^2.0.2",
+    "list-item": "^1.1.1",
+    "lodash": "^4.13.1",
+    "markdown-toc": "^0.12.12",
+    "marked": "^0.3.5",
+    "octonode": "^0.7.6",
+    "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "cheerio": "^0.20.0",
+    "co-mocha": "^1.1.2",
+    "coveralls": "^2.11.9",
+    "cz-conventional-changelog": "^1.1.6",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.5.3",
+    "mocha-lcov-reporter": "^1.2.0",
+    "standard": "^7.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

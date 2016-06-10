@@ -1,0 +1,21 @@
+{
+  "basics": [
+    {
+      "title": "Routing",
+      "permalink": "routing",
+      "weight": 0
+    },
+    {
+      "title": "Controllers",
+      "permalink": "controllers",
+      "weight": 0
+    }
+  ],
+  "database": [
+    {
+      "title": "Model",
+      "permalink": "model",
+      "weight": 0
+    }
+  ]
+}
