@@ -1,3 +1,13 @@
+<a name="1.0.1"></a>
+## 1.0.1 (2016-06-11)
+
+
+### Features
+
+* **markdown:** expose marked renderer and option to wrap toc inside a div([05e1b6b](https://github.com/poppinss/docketjs/commit/05e1b6b))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2016-06-10)
 

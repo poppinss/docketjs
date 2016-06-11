@@ -19,9 +19,12 @@ class Markdown {
 
   constructor (markedOptions, tocOptions) {
     this.marked = marked.setOptions(markedOptions)
+    this.renderer = new marked.Renderer()
     this.tocOptions = _.merge({
       minDepth: 1,
-      maxDepth: 6
+      maxDepth: 6,
+      wrap: true,
+      divId: 'toc'
     }, tocOptions)
   }
 
@@ -63,10 +66,12 @@ class Markdown {
    */
   _getToc (markdown) {
     const generatedToc = toc(markdown, this.tocOptions)
-    return _(generatedToc.json)
+    let tocUl = _(generatedToc.json)
     .filter((heading) => this._filterHeadingsForToc(heading))
     .map((heading) => this._makeTocHeading(heading))
     .value().join('\n')
+    tocUl = this.marked(tocUl)
+    return this.tocOptions.wrap ? `<div id="${this.tocOptions.divId}">${tocUl}</div>` : tocUl
   }
 
   /**
@@ -84,7 +89,7 @@ class Markdown {
     contents = contents.trim()
     const parsedDoc = meta(contents)
     const markdown = parsedDoc.content.replace(/{{\s*TOC\s*}}/, this._getToc(parsedDoc.content))
-    const html = this.marked(markdown)
+    const html = this.marked(markdown, {renderer: this.renderer})
     return {html, meta: parsedDoc.data}
   }
 
