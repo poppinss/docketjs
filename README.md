@@ -156,6 +156,26 @@ const routing = menu.getChild('routing')
  */
 ```
 
+#### getPrevious(tree, peramlink)
+
+Returns previous child for a given `permalink`. It is important to pass a sorted tree to this method, since the previous item inside the unsorted tree can be different from the sorted tree.
+
+```javascript
+menu.load('menu.json')
+const tree = menu.tree()
+const previousChild = menu.getPreviousChild(tree, 'routing')
+```
+
+#### getNextChild(tree, peramlink)
+
+Returns next child for a given `permalink`. It is important to pass a sorted tree to this method, since the next item inside the unsorted tree can be different from the sorted tree.
+
+```javascript
+menu.load('menu.json')
+const tree = menu.tree()
+const nextChild = menu.getNextChild(tree, 'routing')
+```
+
 
 ## Github Reader
 
