@@ -81,6 +81,73 @@ class Menu {
   }
 
   /**
+   * returns nearest child from a leaf or a fallback leaf
+   * in a given direction
+   *
+   * @param   {Array} childs
+   * @param   {String} permalink
+   * @param   {Array} fallbackChilds
+   * @param   {String} direction [prev, next]
+   *
+   * @return  {Object|Null}
+   *
+   * @private
+   */
+  _getNearestChild (childs, permalink, fallbackChilds, direction) {
+    const childIndex = _.findIndex(childs, {permalink})
+    if (childIndex < 0) {
+      return null
+    }
+    if (direction === 'prev' && childIndex === 0) {
+      return fallbackChilds ? _.last(fallbackChilds) : null
+    }
+    if (direction === 'next' && (childIndex + 1) === _.size(childs)) {
+      return fallbackChilds ? _.first(fallbackChilds) : null
+    }
+    return direction === 'prev' ? childs[childIndex - 1] : childs[childIndex + 1]
+  }
+
+  /**
+   * returns previous child for a given permalink
+   *
+   * @param  {Object} tree
+   * @param  {String} permalink
+   *
+   * @return {Object}
+   *
+   * @public
+   */
+  getPreviousChild (tree, permalink) {
+    const treeLeafs = _.keys(tree)
+    return _(treeLeafs)
+    .map((leaf, index) => {
+      const childs = tree[leaf]
+      const previousChilds = tree[treeLeafs[index - 1]]
+      return this._getNearestChild(childs, permalink, previousChilds, 'prev')
+    }).compact().first() || null
+  }
+
+  /**
+   * returns next child for a given permalink
+   *
+   * @param  {Object} tree
+   * @param  {String} permalink
+   *
+   * @return {Object}
+   *
+   * @public
+   */
+  getNextChild (tree, permalink) {
+    const treeLeafs = _.keys(tree)
+    return _(treeLeafs)
+    .map((leaf, index) => {
+      const childs = tree[leaf]
+      const previousChilds = tree[treeLeafs[index + 1]]
+      return this._getNearestChild(childs, permalink, previousChilds, 'next')
+    }).compact().first() || null
+  }
+
+  /**
    * returns a sorted tree of optionally filtered or
    * sorted categories
    *

@@ -100,4 +100,120 @@ describe('Menu', function () {
     const contents = yield Q.nfcall(fsExtra.readJSON, menuFilePath)
     expect(contents).deep.equal(menu.items)
   })
+
+  it('should return previous child to the permalink', function * () {
+    const menu = new Menu()
+    const menuTree = {
+      basics: [
+        {
+          permalink: 'introduction'
+        },
+        {
+          permalink: 'routing'
+        }
+      ]
+    }
+    const previous = menu.getPreviousChild(menuTree, 'routing')
+    expect(previous).deep.equal({permalink: 'introduction'})
+  })
+
+  it('should return child from the previous category when permalink is the first child', function * () {
+    const menu = new Menu()
+    const menuTree = {
+      basics: [
+        {
+          permalink: 'introduction'
+        },
+        {
+          permalink: 'routing'
+        }
+      ],
+      database: [
+        {
+          permalink: 'database-setup'
+        }
+      ]
+    }
+    const previous = menu.getPreviousChild(menuTree, 'database-setup')
+    expect(previous).deep.equal({permalink: 'routing'})
+  })
+
+  it('should null when first child of the first leaf is passed as permalink', function * () {
+    const menu = new Menu()
+    const menuTree = {
+      basics: [
+        {
+          permalink: 'introduction'
+        },
+        {
+          permalink: 'routing'
+        }
+      ],
+      database: [
+        {
+          permalink: 'database-setup'
+        }
+      ]
+    }
+    const previous = menu.getPreviousChild(menuTree, 'introduction')
+    expect(previous).to.equal(null)
+  })
+
+  it('should return next child to the permalink', function * () {
+    const menu = new Menu()
+    const menuTree = {
+      basics: [
+        {
+          permalink: 'introduction'
+        },
+        {
+          permalink: 'routing'
+        }
+      ]
+    }
+    const next = menu.getNextChild(menuTree, 'introduction')
+    expect(next).deep.equal({permalink: 'routing'})
+  })
+
+  it('should return child from the next category when permalink is the last child', function * () {
+    const menu = new Menu()
+    const menuTree = {
+      basics: [
+        {
+          permalink: 'introduction'
+        },
+        {
+          permalink: 'routing'
+        }
+      ],
+      database: [
+        {
+          permalink: 'database-setup'
+        }
+      ]
+    }
+    const next = menu.getNextChild(menuTree, 'routing')
+    expect(next).deep.equal({permalink: 'database-setup'})
+  })
+
+  it('should null when last child of the last leaf is passed as permalink', function * () {
+    const menu = new Menu()
+    const menuTree = {
+      basics: [
+        {
+          permalink: 'introduction'
+        },
+        {
+          permalink: 'routing'
+        }
+      ],
+      database: [
+        {
+          permalink: 'database-setup'
+        }
+      ]
+    }
+    const next = menu.getNextChild(menuTree, 'database-setup')
+    expect(next).to.equal(null)
+  })
 })
