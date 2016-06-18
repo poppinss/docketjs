@@ -1,3 +1,14 @@
+<a name="1.0.2"></a>
+## 1.0.2 (2016-06-18)
+
+
+### Features
+
+* **markdown:** expose marked renderer and option to wrap toc inside a div([05e1b6b](https://github.com/poppinss/docketjs/commit/05e1b6b))
+* **menu:** add methods to pull next and prev childs for a permanlink([ebcf9e7](https://github.com/poppinss/docketjs/commit/ebcf9e7))
+
+
+
 <a name="1.0.1"></a>
 ## 1.0.1 (2016-06-11)
 
