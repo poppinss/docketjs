@@ -53,7 +53,7 @@ class DocketManager extends EventEmitter {
    */
   _addMenuChild (meta) {
     if (this.menu && typeof (this.menu.addChild) === 'function') {
-      this.menu.addChild(meta.title, meta.permalink, meta.categories, meta.weight)
+      this.menu.addChild(meta)
       return
     }
     logger.warn('Cannot write doc meta to menu file, since you have not injected the correct menu instance')
