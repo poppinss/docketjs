@@ -23,19 +23,18 @@ class Menu {
   /**
    * adds a new child to the menu items
    *
-   * @param {String} title
-   * @param {String} permalink
-   * @param {Array} [categories]
-   * @param {Number} [weight]
+   * @param {Object} child
+   *
+   * @note - A child is expected to have title and permalink
    *
    * @public
    */
-  addChild (title, permalink, categories, weight) {
-    categories = categories || ['root']
-    weight = weight || 0
-    _.each(categories, (category) => {
+  addChild (child) {
+    child.categories = child.categories || ['root']
+    child.weight = child.weight || 0
+    _.each(child.categories, (category) => {
       this.items[category] = this.items[category] || []
-      this.items[category].push({title, permalink, weight})
+      this.items[category].push(child)
     })
   }
 
