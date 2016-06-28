@@ -1,3 +1,13 @@
+<a name="1.0.3"></a>
+## 1.0.3 (2016-06-28)
+
+
+### Features
+
+* **menu:** write complete metadata to menu file([98e1106](https://github.com/poppinss/docketjs/commit/98e1106))
+
+
+
 <a name="1.0.2"></a>
 ## 1.0.2 (2016-06-18)
 
