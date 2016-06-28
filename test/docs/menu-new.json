@@ -3,11 +3,17 @@
     {
       "title": "Routing",
       "permalink": "routing",
+      "categories": [
+        "basics"
+      ],
       "weight": 0
     },
     {
       "title": "Controllers",
       "permalink": "controllers",
+      "categories": [
+        "basics"
+      ],
       "weight": 0
     }
   ],
@@ -15,6 +21,9 @@
     {
       "title": "Model",
       "permalink": "model",
+      "categories": [
+        "database"
+      ],
       "weight": 0
     }
   ]

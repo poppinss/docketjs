@@ -1,6 +1,6 @@
 {
   "name": "docketjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "DocketJs is a battery included Markdown to HTML converter for Node.js. It has everything you need to successfully convert a bunch of markdown files to HTML and generate toc and a menu file.",
   "main": "index.js",
   "scripts": {
