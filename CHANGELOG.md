@@ -1,3 +1,12 @@
+<a name="1.0.4"></a>
+## 1.0.4 (2016-06-28)
+
+
+### Bug Fixes
+
+* **menu:** fix the way manager pass data to menu([dbe219b](https://github.com/poppinss/docketjs/commit/dbe219b))
+
+
 <a name="1.0.3"></a>
 ## 1.0.3 (2016-06-28)
 
