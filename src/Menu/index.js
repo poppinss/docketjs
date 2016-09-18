@@ -60,7 +60,7 @@ class Menu {
    * @public
    */
   write () {
-    return Q.nfcall(fsExtra.writeJson, this.menuFile, this.items, {spaces: 2})
+    return Q.nfcall(fsExtra.outputJson, this.menuFile, this.items, {spaces: 2})
   }
 
   /**
