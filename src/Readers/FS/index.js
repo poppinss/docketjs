@@ -11,6 +11,7 @@
 
 const fsExtra = require('fs-extra')
 const path = require('path')
+const _ = require('lodash')
 
 class FS {
 
@@ -28,7 +29,7 @@ class FS {
    * @private
    */
   _grabMarkdownFile (file) {
-    if (file.stats.isFile() && this.docsExtension.includes(path.extname(file.path))) {
+    if (file.stats.isFile() && _.includes(this.docsExtension, path.extname(file.path))) {
       this.docs.push({path: file.path, contents: fsExtra.readFileSync(file.path, 'utf-8')})
     }
   }
