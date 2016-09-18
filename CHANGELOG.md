@@ -1,3 +1,18 @@
+<a name="1.0.5"></a>
+## 1.0.5 (2016-09-18)
+
+
+### Bug Fixes
+
+* **reader:** using _.includes instead of Array.includes ([2c0b239](https://github.com/poppinss/docketjs/commit/2c0b239))
+
+
+### Features
+
+* **parser:** add asciidoc parser ([fd90c63](https://github.com/poppinss/docketjs/commit/fd90c63))
+* **parser:** add asciidoc parser ([7d2b7f0](https://github.com/poppinss/docketjs/commit/7d2b7f0))
+
+
 <a name="1.0.4"></a>
 ## 1.0.4 (2016-06-28)
 
