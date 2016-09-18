@@ -15,5 +15,6 @@ module.exports = {
   Menu: require('./src/Menu'),
   FSWriter: require('./src/Writers/FS'),
   Markdown: require('./src/Markdown'),
+  AsciiDoc: require('./src/AsciiDoc'),
   Manager: require('./src/Manager')
 }
