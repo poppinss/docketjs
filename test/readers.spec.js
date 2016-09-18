@@ -28,6 +28,13 @@ describe('Readers', function () {
         expect(doc.contents).to.exist
       })
     })
+
+    it('should be able to define doc extensions for the files to be returned', function * () {
+      const fsReader = new FSReader(path.join(__dirname, './docs'), ['.adoc'])
+      const docs = yield fsReader.getDocs()
+      expect(docs).to.be.an('array')
+      expect(docs.length).to.equal(0)
+    })
   })
 
   context('Github Reader', function () {
@@ -40,6 +47,23 @@ describe('Readers', function () {
         expect(doc.path.endsWith('.md')).to.equal(true)
         expect(doc.contents).to.exist
       })
+    })
+
+    it('should be able to read docs recursively from github', function * () {
+      this.timeout(0)
+      const ghReader = new GithubReader('adonisjs/docs', 'develop', '3.0')
+      const docs = yield ghReader.getDocs()
+      expect(docs).to.be.an('array')
+      const databaseSetup = docs.filter((doc) => doc.path.endsWith('database/database-setup.md'))
+      expect(databaseSetup[0]).to.exist
+    })
+
+    it('should be able to define doc extensions for the files to be returned', function * () {
+      this.timeout(0)
+      const ghReader = new GithubReader('adonisjs/docs', 'develop', '3.0', ['.adoc'])
+      const docs = yield ghReader.getDocs()
+      expect(docs).to.be.an('array')
+      expect(docs).length(0)
     })
   })
 })

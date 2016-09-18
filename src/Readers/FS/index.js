@@ -10,10 +10,12 @@
 */
 
 const fsExtra = require('fs-extra')
+const path = require('path')
 
 class FS {
 
-  constructor (fromPath) {
+  constructor (fromPath, docsExtension) {
+    this.docsExtension = docsExtension || ['.md', '.adoc']
     this.fromPath = fromPath
     this.docs = []
   }
@@ -26,7 +28,7 @@ class FS {
    * @private
    */
   _grabMarkdownFile (file) {
-    if (file.stats.isFile () && file.path.endsWith('.md')) {
+    if (file.stats.isFile() && this.docsExtension.includes(path.extname(file.path))) {
       this.docs.push({path: file.path, contents: fsExtra.readFileSync(file.path, 'utf-8')})
     }
   }
