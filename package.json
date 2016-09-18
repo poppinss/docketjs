@@ -27,8 +27,8 @@
     "lodash": "^4.15.0",
     "markdown-toc": "^0.12.16",
     "marked": "^0.3.6",
-    "octonode": "^0.7.6",
     "q": "^1.4.1",
+    "shelljs": "^0.7.4",
     "uslug": "^1.0.4"
   },
   "devDependencies": {
