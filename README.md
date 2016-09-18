@@ -5,20 +5,20 @@
 [![Coverage Status](https://img.shields.io/coveralls/poppinss/docketjs/master.svg?style=flat-square)](https://coveralls.io/github/poppinss/docketjs?branch=master)
 [![License](https://img.shields.io/npm/l/docketjs.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-DocketJs is a battery included Markdown to HTML converter for Node.js. 
-It has everything you need to successfully convert a bunch of markdown files to HTML and generate toc and a menu file.
-
+DocketJs is a battery included (Markdown/AsciiDoc) to HTML converter for Node.js.
+It has everything you need to successfully convert a bunch of markdown/asciidoc files to HTML and generate toc with a menu file.
 
 ## Features
 
 1. Support GFM Syntax.
-2. Parses Front matter
+2. Parses Front matter.
 3. Generates a menu JSON file to be used for showing up the menu in HTML.
 4. Generates TOC for each markdown document.
 5. Markdown readers to read files from Github and local disk.
-6. Writer to write files to disk.
+6. AsciiDoc readers to read files from Github and local disk.
+7. Writer to write compiled HTML files to the disk.
 
-## Basic Example
+## Basic Example (Markdown)
 
 ```javascript
 const Docket = require('docketjs')
@@ -36,9 +36,28 @@ new Docket.Manager(reader, markdown, writer, menu)
   .catch(console.error)
 ```
 
+## Basic Example (AsciiDoc)
+
+```javascript
+const Docket = require('docketjs')
+const path = require('path')
+const reader = new Docket.FSReader(path.join(__dirname, 'docs/asciidoc'))
+const menu = new Docket.Menu(path.join(__dirname, 'docs/menu.json'))
+const writer = new Docket.FSWriter(path.join(__dirname, 'docs/html'))
+const adoc = new Docket.AsciiDoc()
+
+new Docket.Manager(reader, adoc, writer, menu)
+  .convert()
+  .then(() => {
+    console.log('All went good')
+  })
+  .catch(console.error)
+```
+
+
 ## Listening For Events
 
-Also you can listen for different events to track the progress of converting markdown documents to HTML.
+Also you can listen for different events to track the progress of converting markdown/asciidoc documents to HTML.
 
 ```javascript
 const docket = new Docket.Manager(reader, markdown, writer, menu)
@@ -106,6 +125,11 @@ Markdown parser makes use of [marked](https://github.com/chjj/marked) to parse t
 3. Parse markdown to HTML with GFM support.
 
 
+#### AsciiDoc Parser
+
+AsciiDoc parser makes use of [asciidoctor.js](https://npmjs.org/package/asciidoctor.js) to parse the asciidoc documents to HTML.
+
+
 #### Menu Builder
 
 Menu builder generates a menu tree of all the documents. Menu builder is dependent upon YAML front matter to read the `permalink`, `title` and `weight` of the document.
@@ -126,7 +150,7 @@ const Menu = require('docketjs').Menu
 const path = require('path')
 const menu = new Menu()
 
-menu.load('menu.json') // loading previously save file
+menu.load('menu.json') // loading previously saved file
 
 console.log(menu.tree())
 ```
