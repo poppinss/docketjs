@@ -19,7 +19,7 @@ require('co-mocha')
 describe('Readers', function () {
   context('Fs Reader', function () {
     it('should return an array of all markdown files from a given directory', function * () {
-      const fsReader = new FSReader(path.join(__dirname, './docs'))
+      const fsReader = new FSReader(path.join(__dirname, './docs'), ['.md'])
       const docs = yield fsReader.getDocs()
       expect(docs).to.be.an('array')
       expect(docs.length).to.equal(3)
@@ -30,7 +30,7 @@ describe('Readers', function () {
     })
 
     it('should be able to define doc extensions for the files to be returned', function * () {
-      const fsReader = new FSReader(path.join(__dirname, './docs'), ['.adoc'])
+      const fsReader = new FSReader(path.join(__dirname, './docs'), ['.aciidoc'])
       const docs = yield fsReader.getDocs()
       expect(docs).to.be.an('array')
       expect(docs.length).to.equal(0)
