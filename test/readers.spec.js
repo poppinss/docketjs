@@ -32,7 +32,7 @@ describe('Readers', function () {
 
   context('Github Reader', function () {
     it('should return an array of all markdown files from a given directory', function * () {
-      this.timeout(3000)
+      this.timeout(0)
       const ghReader = new GithubReader('adonisjs/docs', 'develop', '3.0')
       const docs = yield ghReader.getDocs()
       expect(docs).to.be.an('array')

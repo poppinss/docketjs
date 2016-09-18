@@ -24,7 +24,8 @@ class Markdown {
       minDepth: 1,
       maxDepth: 6,
       wrap: true,
-      divId: 'toc'
+      divId: 'toc',
+      slugify: require('uslug')
     }, tocOptions)
   }
 
@@ -52,7 +53,7 @@ class Markdown {
    * @private
    */
   _makeTocHeading (heading) {
-    return `${li((heading.lvl - 1), toc.linkify(heading).content)}`
+    return `${li((heading.lvl - 1), `<a href="#${this.tocOptions.slugify(heading.content)}">${heading.content}</a>`)}`
   }
 
   /**
