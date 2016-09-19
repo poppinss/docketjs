@@ -15,9 +15,9 @@ const path = require('path')
 
 class FSWriter {
 
-	constructor (basePath) {
-		this.basePath = basePath
-	}
+  constructor (basePath) {
+    this.basePath = basePath
+  }
 
 	/**
 	 * write a single file to a given path with its
@@ -30,10 +30,10 @@ class FSWriter {
 	 *
 	 * @private
 	 */
-	writeDoc (toPath, contents) {
-		const writeToPath = path.join(this.basePath, toPath)
-		return Q.nfcall(fsExtra.writeFile, writeToPath, contents)
-	}
+  writeDoc (toPath, contents) {
+    const writeToPath = path.join(this.basePath, toPath)
+    return Q.nfcall(fsExtra.outputFile, writeToPath, contents)
+  }
 }
 
 module.exports = FSWriter
