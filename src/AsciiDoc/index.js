@@ -32,6 +32,9 @@ class AsciiDoc {
     const doc = processor.$load(content, this.options)
     const frontMatter = doc.$attr('front-matter')
     const meta = typeof (frontMatter) === 'string' ? matter(`---\n${frontMatter}\n---`) : {}
+    if (!meta.title) {
+      meta.title = doc.$attr('doctitle')
+    }
     return {meta: meta.data, html: doc.$content()}
   }
 
