@@ -1,3 +1,13 @@
+<a name="1.0.7"></a>
+## [1.0.7](https://github.com/poppinss/docketjs/compare/v1.0.6...v1.0.7) (2016-09-22)
+
+
+### Bug Fixes
+
+* **asciidoc:** pick data property from front matter ([d73c38a](https://github.com/poppinss/docketjs/commit/d73c38a))
+
+
+
 <a name="1.0.6"></a>
 ## 1.0.6 (2016-09-19)
 
