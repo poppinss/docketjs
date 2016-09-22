@@ -31,11 +31,11 @@ class AsciiDoc {
   convert (content) {
     const doc = processor.$load(content, this.options)
     const frontMatter = doc.$attr('front-matter')
-    const meta = typeof (frontMatter) === 'string' ? matter(`---\n${frontMatter}\n---`) : {}
+    const meta = typeof (frontMatter) === 'string' ? matter(`---\n${frontMatter}\n---`).data : {}
     if (!meta.title) {
       meta.title = doc.$attr('doctitle')
     }
-    return {meta: meta.data, html: doc.$content()}
+    return {meta: meta, html: doc.$content()}
   }
 
 }
